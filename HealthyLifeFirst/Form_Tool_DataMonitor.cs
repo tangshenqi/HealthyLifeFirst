@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace HealthyLifeFirst
 {
-    public partial class Form1 : Form
+    public partial class Form_Tool_DataMonitor : Form
     {
-        public Form1()
+        public Form_Tool_DataMonitor()
         {
             InitializeComponent();
         }

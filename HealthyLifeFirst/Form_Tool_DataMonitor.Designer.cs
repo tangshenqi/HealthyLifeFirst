@@ -1,6 +1,6 @@
 ﻿namespace HealthyLifeFirst
 {
-    partial class Form1
+    partial class Form_Tool_DataMonitor
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Tool_DataMonitor));
+            this.SuspendLayout();
+            // 
+            // Form_Tool_DataMonitor
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.AutoScroll = true;
+            this.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.ClientSize = new System.Drawing.Size(1184, 761);
+            this.Font = new System.Drawing.Font("Arial Narrow", 10F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Name = "Form_Tool_DataMonitor";
+            this.Text = "Data Monitor";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
     }
 }
-

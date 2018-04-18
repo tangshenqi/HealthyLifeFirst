@@ -45,14 +45,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Form_HLFMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Form_HLFMain.Designer.cs">
+      <DependentUpon>Form_HLFMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Template_MDIChild.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Template_MDIChild.Designer.cs">
+      <DependentUpon>Form_Template_MDIChild.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Tool_DataMonitor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Tool_DataMonitor.Designer.cs">
+      <DependentUpon>Form_Tool_DataMonitor.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form_HLFMain.resx">
+      <DependentUpon>Form_HLFMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Template_MDIChild.resx">
+      <DependentUpon>Form_Template_MDIChild.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Tool_DataMonitor.resx">
+      <DependentUpon>Form_Tool_DataMonitor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
