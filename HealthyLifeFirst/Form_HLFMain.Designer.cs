@@ -33,6 +33,8 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.status_Main = new System.Windows.Forms.StatusStrip();
             this.lbl_Status_Main = new System.Windows.Forms.ToolStripStatusLabel();
+            this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.launchDataMonitorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_Main.SuspendLayout();
             this.status_Main.SuspendLayout();
             this.SuspendLayout();
@@ -41,7 +43,8 @@
             // 
             this.menu_Main.Font = new System.Drawing.Font("Arial Narrow", 10F);
             this.menu_Main.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.debugToolStripMenuItem});
             this.menu_Main.Location = new System.Drawing.Point(0, 0);
             this.menu_Main.Name = "menu_Main";
             this.menu_Main.Size = new System.Drawing.Size(1184, 25);
@@ -51,8 +54,8 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(45, 21);
-            this.fileToolStripMenuItem.Text = "Main";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(73, 21);
+            this.fileToolStripMenuItem.Text = "Operations";
             // 
             // status_Main
             // 
@@ -67,9 +70,25 @@
             // 
             // lbl_Status_Main
             // 
+            this.lbl_Status_Main.BackColor = System.Drawing.Color.Transparent;
             this.lbl_Status_Main.Name = "lbl_Status_Main";
             this.lbl_Status_Main.Size = new System.Drawing.Size(41, 17);
             this.lbl_Status_Main.Text = "Status:";
+            // 
+            // debugToolStripMenuItem
+            // 
+            this.debugToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.launchDataMonitorToolStripMenuItem});
+            this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
+            this.debugToolStripMenuItem.Size = new System.Drawing.Size(52, 21);
+            this.debugToolStripMenuItem.Text = "Debug";
+            // 
+            // launchDataMonitorToolStripMenuItem
+            // 
+            this.launchDataMonitorToolStripMenuItem.Name = "launchDataMonitorToolStripMenuItem";
+            this.launchDataMonitorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.launchDataMonitorToolStripMenuItem.Text = "Launch DataMonitor";
+            this.launchDataMonitorToolStripMenuItem.Click += new System.EventHandler(this.launchDataMonitorToolStripMenuItem_Click);
             // 
             // Form_HLFMain
             // 
@@ -104,6 +123,8 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.StatusStrip status_Main;
         private System.Windows.Forms.ToolStripStatusLabel lbl_Status_Main;
+        private System.Windows.Forms.ToolStripMenuItem debugToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem launchDataMonitorToolStripMenuItem;
     }
 }
 

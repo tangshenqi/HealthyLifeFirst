@@ -32,8 +32,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,6 +54,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Appointment.cs">
+      <DependentUpon>HLFEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Case.cs">
+      <DependentUpon>HLFEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultationFee.cs">
+      <DependentUpon>HLFEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Country.cs">
+      <DependentUpon>HLFEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Customer.cs">
+      <DependentUpon>HLFEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Employee.cs">
+      <DependentUpon>HLFEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Form_HLFMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,8 +90,59 @@
     <Compile Include="Form_Tool_DataMonitor.Designer.cs">
       <DependentUpon>Form_Tool_DataMonitor.cs</DependentUpon>
     </Compile>
+    <Compile Include="HLFEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HLFEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HLFEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HLFEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HLFEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HLFEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory.cs">
+      <DependentUpon>HLFEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Item.cs">
+      <DependentUpon>HLFEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Leave.cs">
+      <DependentUpon>HLFEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Order.cs">
+      <DependentUpon>HLFEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Prescription.cs">
+      <DependentUpon>HLFEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PrescriptionSet.cs">
+      <DependentUpon>HLFEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProcedureFee.cs">
+      <DependentUpon>HLFEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sourcing.cs">
+      <DependentUpon>HLFEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>HLFEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>HLFEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Supplier.cs">
+      <DependentUpon>HLFEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>HLFEntities.tt</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form_HLFMain.resx">
       <DependentUpon>Form_HLFMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -83,6 +161,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EntityDeploy Include="HLFEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HLFEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="HLFEntities.edmx.diagram">
+      <DependentUpon>HLFEntities.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -95,6 +181,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="HLFEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HLFEntities.edmx</DependentUpon>
+      <LastGenOutput>HLFEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="HLFEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HLFEntities.edmx</DependentUpon>
+      <LastGenOutput>HLFEntities.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

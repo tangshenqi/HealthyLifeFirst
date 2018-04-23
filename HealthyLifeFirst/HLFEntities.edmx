@@ -1,0 +1,1122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HealthyLifeFirstModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Appointment">
+          <Key>
+            <PropertyRef Name="AppointmentID" />
+          </Key>
+          <Property Name="AppointmentID" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="BookingDateAndTime" Type="datetime" Nullable="false" />
+          <Property Name="CustomerID" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="AppointmentDate" Type="date" Nullable="false" />
+          <Property Name="AppointmentTime" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="Remarks" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Case">
+          <Key>
+            <PropertyRef Name="CaseID" />
+          </Key>
+          <Property Name="CaseID" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="CustomerID" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="ConsultationDate" Type="date" Nullable="false" />
+          <Property Name="Observations" Type="varchar(max)" Nullable="false" />
+          <Property Name="Investigations" Type="varchar(max)" Nullable="false" />
+          <Property Name="Diagnosis" Type="varchar(max)" Nullable="false" />
+          <Property Name="Prescription" Type="varchar(max)" Nullable="false" />
+          <Property Name="HasMC" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="NumberOfDaysOfMC" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ConsultationFee">
+          <Key>
+            <PropertyRef Name="ConsultationType" />
+          </Key>
+          <Property Name="ConsultationType" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Charge" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="TimeZone" />
+          </Key>
+          <Property Name="TimeZone" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="CountryCode" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="TimeOffset" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="IdentitficationNumber" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Salary" Type="float" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="Designation" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="NOKRelationship" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="NOKName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NOKPhoneNumber" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DateJoin" Type="date" Nullable="false" />
+          <Property Name="AllocatedAnnualLeave" Type="float" Nullable="false" />
+          <Property Name="AllocatedMedicalLeave" Type="float" Nullable="false" />
+          <Property Name="AllocatedHospitalizationLeave" Type="float" Nullable="false" />
+          <Property Name="AllocatedPaternalOrMaternalLeave" Type="float" Nullable="false" />
+          <Property Name="AllocatedCompassionateLeave" Type="float" Nullable="false" />
+          <Property Name="AllocatedChildcareLeave" Type="float" Nullable="false" />
+          <Property Name="Superior" Type="varchar" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="QuantityBalance" Type="float" Nullable="false" />
+          <Property Name="QuantityOnOrder" Type="float" Nullable="false" />
+          <Property Name="UnitOfMeasure" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Location" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="ItemType" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ItemMainCategory" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="ItemSubCategory" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="ItemBrand" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="ItemDescription" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SupplierID" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="ActiveIngredient" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="StorageBelowTemp" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="IsSunlightSensitive" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="DosageFrequency" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CauseDrowsiness" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="CauseGastric" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="SalePrice" Type="float" Nullable="false" />
+          <Property Name="Remarks" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ByCourse" Type="varchar" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Leave">
+          <Key>
+            <PropertyRef Name="LeaveID" />
+          </Key>
+          <Property Name="LeaveID" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="EmployeeID" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="LeaveType" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="NumberOfDays" Type="float" Nullable="false" />
+          <Property Name="DateStart" Type="date" Nullable="false" />
+          <Property Name="Remarks" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="ItemID" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="QuantityOrdered" Type="float" Nullable="false" />
+          <Property Name="UnitOfMeasure" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="OrderPrice" Type="float" Nullable="false" />
+          <Property Name="DateOrdered" Type="date" Nullable="false" />
+          <Property Name="DateExpected" Type="date" Nullable="false" />
+          <Property Name="DateReceived" Type="date" Nullable="false" />
+          <Property Name="SupplierID" Type="varchar" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Prescription">
+          <Key>
+            <PropertyRef Name="PrescriptionID" />
+          </Key>
+          <Property Name="PrescriptionID" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="ItemID" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="QuantityIssued" Type="float" Nullable="false" />
+          <Property Name="UnitOfMeasure" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PrescriptionSet">
+          <Key>
+            <PropertyRef Name="PrescriptionSetID" />
+            <PropertyRef Name="SetName" />
+            <PropertyRef Name="ItemID" />
+            <PropertyRef Name="QuantityPerDay" />
+            <PropertyRef Name="UnitOfMeasure" />
+          </Key>
+          <Property Name="PrescriptionSetID" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="SetName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ItemID" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="QuantityPerDay" Type="float" Nullable="false" />
+          <Property Name="UnitOfMeasure" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProcedureFee">
+          <Key>
+            <PropertyRef Name="ProcedureName" />
+          </Key>
+          <Property Name="ProcedureName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Charge" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sourcing">
+          <Key>
+            <PropertyRef Name="SourceID" />
+          </Key>
+          <Property Name="SourceID" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="DateSourced" Type="date" Nullable="false" />
+          <Property Name="ItemID" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="SupplierID" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="CostPrice" Type="float" Nullable="false" />
+          <Property Name="DateValidUntil" Type="date" Nullable="false" />
+          <Property Name="MinOrderQuantity" Type="float" Nullable="false" />
+          <Property Name="UnitOfMeasure" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="LeadTime" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="SupplierID" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyAddress" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="PhoneExt" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TimeZone" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Appointment_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Case_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Case" Type="Self.Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Case">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Leave_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Leave" Type="Self.Leave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Leave">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sourcing_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="Sourcing" Type="Self.Sourcing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="Sourcing">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sourcing_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="Sourcing" Type="Self.Sourcing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="Sourcing">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Supplier_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="TimeZone" />
+            </Principal>
+            <Dependent Role="Supplier">
+              <PropertyRef Name="TimeZone" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="HealthyLifeFirstModelStoreContainer">
+          <EntitySet Name="Appointment" EntityType="Self.Appointment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Case" EntityType="Self.Case" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConsultationFee" EntityType="Self.ConsultationFee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Leave" EntityType="Self.Leave" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prescription" EntityType="Self.Prescription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProcedureFee" EntityType="Self.ProcedureFee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sourcing" EntityType="Self.Sourcing" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PrescriptionSet" EntityType="Self.PrescriptionSet" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PrescriptionSet].[PrescriptionSetID] AS [PrescriptionSetID], 
+    [PrescriptionSet].[SetName] AS [SetName], 
+    [PrescriptionSet].[ItemID] AS [ItemID], 
+    [PrescriptionSet].[QuantityPerDay] AS [QuantityPerDay], 
+    [PrescriptionSet].[UnitOfMeasure] AS [UnitOfMeasure]
+    FROM [dbo].[PrescriptionSet] AS [PrescriptionSet]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Appointment_Customer" Association="Self.FK_Appointment_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Appointment" EntitySet="Appointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Case_Customer" Association="Self.FK_Case_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Case" EntitySet="Case" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_Item" Association="Self.FK_Inventory_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_Supplier" Association="Self.FK_Item_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Leave_Employee" Association="Self.FK_Leave_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Leave" EntitySet="Leave" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Item" Association="Self.FK_Order_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Supplier" Association="Self.FK_Order_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sourcing_Item" Association="Self.FK_Sourcing_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Sourcing" EntitySet="Sourcing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sourcing_Supplier" Association="Self.FK_Sourcing_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Sourcing" EntitySet="Sourcing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Supplier_Country" Association="Self.FK_Supplier_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Supplier" EntitySet="Supplier" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HealthyLifeFirstModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Appointment">
+          <Key>
+            <PropertyRef Name="AppointmentID" />
+          </Key>
+          <Property Name="AppointmentID" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BookingDateAndTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AppointmentDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AppointmentTime" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Appointment_Customer" FromRole="Appointment" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="Case">
+          <Key>
+            <PropertyRef Name="CaseID" />
+          </Key>
+          <Property Name="CaseID" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ConsultationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Observations" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Investigations" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Diagnosis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Prescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HasMC" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NumberOfDaysOfMC" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Case_Customer" FromRole="Case" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="ConsultationFee">
+          <Key>
+            <PropertyRef Name="ConsultationType" />
+          </Key>
+          <Property Name="ConsultationType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Charge" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="TimeZone" />
+          </Key>
+          <Property Name="TimeZone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CountryCode" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TimeOffset" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK_Supplier_Country" FromRole="Country" ToRole="Supplier" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdentitficationNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Appointment" Relationship="Self.FK_Appointment_Customer" FromRole="Customer" ToRole="Appointment" />
+          <NavigationProperty Name="Case" Relationship="Self.FK_Case_Customer" FromRole="Customer" ToRole="Case" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Salary" Type="Double" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Designation" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOKRelationship" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOKName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOKPhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateJoin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AllocatedAnnualLeave" Type="Double" Nullable="false" />
+          <Property Name="AllocatedMedicalLeave" Type="Double" Nullable="false" />
+          <Property Name="AllocatedHospitalizationLeave" Type="Double" Nullable="false" />
+          <Property Name="AllocatedPaternalOrMaternalLeave" Type="Double" Nullable="false" />
+          <Property Name="AllocatedCompassionateLeave" Type="Double" Nullable="false" />
+          <Property Name="AllocatedChildcareLeave" Type="Double" Nullable="false" />
+          <Property Name="Superior" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Leave" Relationship="Self.FK_Leave_Employee" FromRole="Employee" ToRole="Leave" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QuantityBalance" Type="Double" Nullable="false" />
+          <Property Name="QuantityOnOrder" Type="Double" Nullable="false" />
+          <Property Name="UnitOfMeasure" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Location" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_Inventory_Item" FromRole="Inventory" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ItemType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ItemMainCategory" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ItemSubCategory" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ItemBrand" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ItemDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ActiveIngredient" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StorageBelowTemp" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsSunlightSensitive" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DosageFrequency" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CauseDrowsiness" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CauseGastric" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SalePrice" Type="Double" Nullable="false" />
+          <Property Name="Remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ByCourse" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_Inventory_Item" FromRole="Item" ToRole="Inventory" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK_Item_Supplier" FromRole="Item" ToRole="Supplier" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Item" FromRole="Item" ToRole="Order" />
+          <NavigationProperty Name="Sourcing" Relationship="Self.FK_Sourcing_Item" FromRole="Item" ToRole="Sourcing" />
+        </EntityType>
+        <EntityType Name="Leave">
+          <Key>
+            <PropertyRef Name="LeaveID" />
+          </Key>
+          <Property Name="LeaveID" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LeaveType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NumberOfDays" Type="Double" Nullable="false" />
+          <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Leave_Employee" FromRole="Leave" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QuantityOrdered" Type="Double" Nullable="false" />
+          <Property Name="UnitOfMeasure" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrderPrice" Type="Double" Nullable="false" />
+          <Property Name="DateOrdered" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateExpected" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateReceived" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_Order_Item" FromRole="Order" ToRole="Item" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK_Order_Supplier" FromRole="Order" ToRole="Supplier" />
+        </EntityType>
+        <EntityType Name="Prescription">
+          <Key>
+            <PropertyRef Name="PrescriptionID" />
+          </Key>
+          <Property Name="PrescriptionID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ItemID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QuantityIssued" Type="Double" Nullable="false" />
+          <Property Name="UnitOfMeasure" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProcedureFee">
+          <Key>
+            <PropertyRef Name="ProcedureName" />
+          </Key>
+          <Property Name="ProcedureName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Charge" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sourcing">
+          <Key>
+            <PropertyRef Name="SourceID" />
+          </Key>
+          <Property Name="SourceID" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateSourced" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CostPrice" Type="Double" Nullable="false" />
+          <Property Name="DateValidUntil" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MinOrderQuantity" Type="Double" Nullable="false" />
+          <Property Name="UnitOfMeasure" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LeadTime" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_Sourcing_Item" FromRole="Sourcing" ToRole="Item" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK_Sourcing_Supplier" FromRole="Sourcing" ToRole="Supplier" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="SupplierID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyAddress" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhoneExt" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Country" Relationship="Self.FK_Supplier_Country" FromRole="Supplier" ToRole="Country" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_Item_Supplier" FromRole="Supplier" ToRole="Item" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Supplier" FromRole="Supplier" ToRole="Order" />
+          <NavigationProperty Name="Sourcing" Relationship="Self.FK_Sourcing_Supplier" FromRole="Supplier" ToRole="Sourcing" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="PrescriptionSet">
+          <Key>
+            <PropertyRef Name="PrescriptionSetID" />
+            <PropertyRef Name="SetName" />
+            <PropertyRef Name="ItemID" />
+            <PropertyRef Name="QuantityPerDay" />
+            <PropertyRef Name="UnitOfMeasure" />
+          </Key>
+          <Property Name="PrescriptionSetID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SetName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ItemID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QuantityPerDay" Type="Double" Nullable="false" />
+          <Property Name="UnitOfMeasure" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Appointment_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Case_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Case" Type="Self.Case" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Supplier_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Leave_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Leave" Type="Self.Leave" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Inventory_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Order_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Sourcing_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="Sourcing" Type="Self.Sourcing" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Order_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Sourcing_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="Sourcing" Type="Self.Sourcing" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="HealthyLifeFirstEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Appointment" EntityType="Self.Appointment" />
+          <EntitySet Name="Case" EntityType="Self.Case" />
+          <EntitySet Name="ConsultationFee" EntityType="Self.ConsultationFee" />
+          <EntitySet Name="Country" EntityType="Self.Country" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" />
+          <EntitySet Name="Inventory" EntityType="Self.Inventory" />
+          <EntitySet Name="Item" EntityType="Self.Item" />
+          <EntitySet Name="Leave" EntityType="Self.Leave" />
+          <EntitySet Name="Order" EntityType="Self.Order" />
+          <EntitySet Name="Prescription" EntityType="Self.Prescription" />
+          <EntitySet Name="ProcedureFee" EntityType="Self.ProcedureFee" />
+          <EntitySet Name="Sourcing" EntityType="Self.Sourcing" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="PrescriptionSet" EntityType="Self.PrescriptionSet" />
+          <AssociationSet Name="FK_Appointment_Customer" Association="Self.FK_Appointment_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Appointment" EntitySet="Appointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Case_Customer" Association="Self.FK_Case_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Case" EntitySet="Case" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Supplier_Country" Association="Self.FK_Supplier_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Supplier" EntitySet="Supplier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Leave_Employee" Association="Self.FK_Leave_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Leave" EntitySet="Leave" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_Item" Association="Self.FK_Inventory_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_Supplier" Association="Self.FK_Item_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Item" Association="Self.FK_Order_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sourcing_Item" Association="Self.FK_Sourcing_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Sourcing" EntitySet="Sourcing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Supplier" Association="Self.FK_Order_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sourcing_Supplier" Association="Self.FK_Sourcing_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Sourcing" EntitySet="Sourcing" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(HealthyLifeFirstModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(HealthyLifeFirstModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HealthyLifeFirstModelStoreContainer" CdmEntityContainer="HealthyLifeFirstEntities">
+          <EntitySetMapping Name="Appointment">
+            <EntityTypeMapping TypeName="HealthyLifeFirstModel.Appointment">
+              <MappingFragment StoreEntitySet="Appointment">
+                <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+                <ScalarProperty Name="BookingDateAndTime" ColumnName="BookingDateAndTime" />
+                <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+                <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Case">
+            <EntityTypeMapping TypeName="HealthyLifeFirstModel.Case">
+              <MappingFragment StoreEntitySet="Case">
+                <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+                <ScalarProperty Name="ConsultationDate" ColumnName="ConsultationDate" />
+                <ScalarProperty Name="Observations" ColumnName="Observations" />
+                <ScalarProperty Name="Investigations" ColumnName="Investigations" />
+                <ScalarProperty Name="Diagnosis" ColumnName="Diagnosis" />
+                <ScalarProperty Name="Prescription" ColumnName="Prescription" />
+                <ScalarProperty Name="HasMC" ColumnName="HasMC" />
+                <ScalarProperty Name="NumberOfDaysOfMC" ColumnName="NumberOfDaysOfMC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConsultationFee">
+            <EntityTypeMapping TypeName="HealthyLifeFirstModel.ConsultationFee">
+              <MappingFragment StoreEntitySet="ConsultationFee">
+                <ScalarProperty Name="ConsultationType" ColumnName="ConsultationType" />
+                <ScalarProperty Name="Charge" ColumnName="Charge" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Country">
+            <EntityTypeMapping TypeName="HealthyLifeFirstModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="TimeOffset" ColumnName="TimeOffset" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="HealthyLifeFirstModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="IdentitficationNumber" ColumnName="IdentitficationNumber" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="HealthyLifeFirstModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="NOKRelationship" ColumnName="NOKRelationship" />
+                <ScalarProperty Name="NOKName" ColumnName="NOKName" />
+                <ScalarProperty Name="NOKPhoneNumber" ColumnName="NOKPhoneNumber" />
+                <ScalarProperty Name="DateJoin" ColumnName="DateJoin" />
+                <ScalarProperty Name="AllocatedAnnualLeave" ColumnName="AllocatedAnnualLeave" />
+                <ScalarProperty Name="AllocatedMedicalLeave" ColumnName="AllocatedMedicalLeave" />
+                <ScalarProperty Name="AllocatedHospitalizationLeave" ColumnName="AllocatedHospitalizationLeave" />
+                <ScalarProperty Name="AllocatedPaternalOrMaternalLeave" ColumnName="AllocatedPaternalOrMaternalLeave" />
+                <ScalarProperty Name="AllocatedCompassionateLeave" ColumnName="AllocatedCompassionateLeave" />
+                <ScalarProperty Name="AllocatedChildcareLeave" ColumnName="AllocatedChildcareLeave" />
+                <ScalarProperty Name="Superior" ColumnName="Superior" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inventory">
+            <EntityTypeMapping TypeName="HealthyLifeFirstModel.Inventory">
+              <MappingFragment StoreEntitySet="Inventory">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="QuantityBalance" ColumnName="QuantityBalance" />
+                <ScalarProperty Name="QuantityOnOrder" ColumnName="QuantityOnOrder" />
+                <ScalarProperty Name="UnitOfMeasure" ColumnName="UnitOfMeasure" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Item">
+            <EntityTypeMapping TypeName="HealthyLifeFirstModel.Item">
+              <MappingFragment StoreEntitySet="Item">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemType" ColumnName="ItemType" />
+                <ScalarProperty Name="ItemMainCategory" ColumnName="ItemMainCategory" />
+                <ScalarProperty Name="ItemSubCategory" ColumnName="ItemSubCategory" />
+                <ScalarProperty Name="ItemBrand" ColumnName="ItemBrand" />
+                <ScalarProperty Name="ItemDescription" ColumnName="ItemDescription" />
+                <ScalarProperty Name="ActiveIngredient" ColumnName="ActiveIngredient" />
+                <ScalarProperty Name="StorageBelowTemp" ColumnName="StorageBelowTemp" />
+                <ScalarProperty Name="IsSunlightSensitive" ColumnName="IsSunlightSensitive" />
+                <ScalarProperty Name="DosageFrequency" ColumnName="DosageFrequency" />
+                <ScalarProperty Name="CauseDrowsiness" ColumnName="CauseDrowsiness" />
+                <ScalarProperty Name="CauseGastric" ColumnName="CauseGastric" />
+                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="ByCourse" ColumnName="ByCourse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Leave">
+            <EntityTypeMapping TypeName="HealthyLifeFirstModel.Leave">
+              <MappingFragment StoreEntitySet="Leave">
+                <ScalarProperty Name="LeaveID" ColumnName="LeaveID" />
+                <ScalarProperty Name="LeaveType" ColumnName="LeaveType" />
+                <ScalarProperty Name="NumberOfDays" ColumnName="NumberOfDays" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="HealthyLifeFirstModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="QuantityOrdered" ColumnName="QuantityOrdered" />
+                <ScalarProperty Name="UnitOfMeasure" ColumnName="UnitOfMeasure" />
+                <ScalarProperty Name="OrderPrice" ColumnName="OrderPrice" />
+                <ScalarProperty Name="DateOrdered" ColumnName="DateOrdered" />
+                <ScalarProperty Name="DateExpected" ColumnName="DateExpected" />
+                <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prescription">
+            <EntityTypeMapping TypeName="HealthyLifeFirstModel.Prescription">
+              <MappingFragment StoreEntitySet="Prescription">
+                <ScalarProperty Name="PrescriptionID" ColumnName="PrescriptionID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="QuantityIssued" ColumnName="QuantityIssued" />
+                <ScalarProperty Name="UnitOfMeasure" ColumnName="UnitOfMeasure" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProcedureFee">
+            <EntityTypeMapping TypeName="HealthyLifeFirstModel.ProcedureFee">
+              <MappingFragment StoreEntitySet="ProcedureFee">
+                <ScalarProperty Name="ProcedureName" ColumnName="ProcedureName" />
+                <ScalarProperty Name="Charge" ColumnName="Charge" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sourcing">
+            <EntityTypeMapping TypeName="HealthyLifeFirstModel.Sourcing">
+              <MappingFragment StoreEntitySet="Sourcing">
+                <ScalarProperty Name="SourceID" ColumnName="SourceID" />
+                <ScalarProperty Name="DateSourced" ColumnName="DateSourced" />
+                <ScalarProperty Name="CostPrice" ColumnName="CostPrice" />
+                <ScalarProperty Name="DateValidUntil" ColumnName="DateValidUntil" />
+                <ScalarProperty Name="MinOrderQuantity" ColumnName="MinOrderQuantity" />
+                <ScalarProperty Name="UnitOfMeasure" ColumnName="UnitOfMeasure" />
+                <ScalarProperty Name="LeadTime" ColumnName="LeadTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Supplier">
+            <EntityTypeMapping TypeName="HealthyLifeFirstModel.Supplier">
+              <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneExt" ColumnName="PhoneExt" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="HealthyLifeFirstModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrescriptionSet">
+            <EntityTypeMapping TypeName="HealthyLifeFirstModel.PrescriptionSet">
+              <MappingFragment StoreEntitySet="PrescriptionSet">
+                <ScalarProperty Name="PrescriptionSetID" ColumnName="PrescriptionSetID" />
+                <ScalarProperty Name="SetName" ColumnName="SetName" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="QuantityPerDay" ColumnName="QuantityPerDay" />
+                <ScalarProperty Name="UnitOfMeasure" ColumnName="UnitOfMeasure" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_Appointment_Customer" TypeName="HealthyLifeFirstModel.FK_Appointment_Customer" StoreEntitySet="Appointment">
+            <EndProperty Name="Customer">
+              <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+            </EndProperty>
+            <EndProperty Name="Appointment">
+              <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Case_Customer" TypeName="HealthyLifeFirstModel.FK_Case_Customer" StoreEntitySet="Case">
+            <EndProperty Name="Customer">
+              <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+            </EndProperty>
+            <EndProperty Name="Case">
+              <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Supplier_Country" TypeName="HealthyLifeFirstModel.FK_Supplier_Country" StoreEntitySet="Supplier">
+            <EndProperty Name="Country">
+              <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
+            </EndProperty>
+            <EndProperty Name="Supplier">
+              <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="TimeZone" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Leave_Employee" TypeName="HealthyLifeFirstModel.FK_Leave_Employee" StoreEntitySet="Leave">
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+            </EndProperty>
+            <EndProperty Name="Leave">
+              <ScalarProperty Name="LeaveID" ColumnName="LeaveID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Item_Supplier" TypeName="HealthyLifeFirstModel.FK_Item_Supplier" StoreEntitySet="Item">
+            <EndProperty Name="Supplier">
+              <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+            </EndProperty>
+            <EndProperty Name="Item">
+              <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Order_Item" TypeName="HealthyLifeFirstModel.FK_Order_Item" StoreEntitySet="Order">
+            <EndProperty Name="Item">
+              <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+            </EndProperty>
+            <EndProperty Name="Order">
+              <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Sourcing_Item" TypeName="HealthyLifeFirstModel.FK_Sourcing_Item" StoreEntitySet="Sourcing">
+            <EndProperty Name="Item">
+              <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+            </EndProperty>
+            <EndProperty Name="Sourcing">
+              <ScalarProperty Name="SourceID" ColumnName="SourceID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Order_Supplier" TypeName="HealthyLifeFirstModel.FK_Order_Supplier" StoreEntitySet="Order">
+            <EndProperty Name="Supplier">
+              <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+            </EndProperty>
+            <EndProperty Name="Order">
+              <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Sourcing_Supplier" TypeName="HealthyLifeFirstModel.FK_Sourcing_Supplier" StoreEntitySet="Sourcing">
+            <EndProperty Name="Supplier">
+              <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+            </EndProperty>
+            <EndProperty Name="Sourcing">
+              <ScalarProperty Name="SourceID" ColumnName="SourceID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="HealthyLifeFirstModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="HealthyLifeFirstModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="HealthyLifeFirstModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="HealthyLifeFirstModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HealthyLifeFirstModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="HealthyLifeFirstModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HealthyLifeFirstModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="HealthyLifeFirstModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="HealthyLifeFirstModel.Store.sp_upgraddiagrams" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

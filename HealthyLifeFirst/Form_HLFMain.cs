@@ -21,5 +21,11 @@ namespace HealthyLifeFirst
         {
             lbl_Status_Main.Text = m;
         }
+
+        private void launchDataMonitorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form_Tool_DataMonitor frm = new Form_Tool_DataMonitor();
+            frm.Show();
+        }
     }
 }
