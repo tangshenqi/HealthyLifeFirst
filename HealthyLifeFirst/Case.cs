@@ -15,6 +15,8 @@ namespace HealthyLifeFirst
     public partial class Case
     {
         public string CaseID { get; set; }
+        public string EmployeeID { get; set; }
+        public string CustomerID { get; set; }
         public System.DateTime ConsultationDate { get; set; }
         public string Observations { get; set; }
         public string Investigations { get; set; }
@@ -24,5 +26,6 @@ namespace HealthyLifeFirst
         public int NumberOfDaysOfMC { get; set; }
     
         public virtual Customer Customer { get; set; }
+        public virtual Employee Employee { get; set; }
     }
 }

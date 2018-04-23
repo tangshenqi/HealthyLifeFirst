@@ -30,6 +30,7 @@ namespace HealthyLifeFirst
         public string PhoneNumber { get; set; }
         public string PhoneExt { get; set; }
         public string EmailAddress { get; set; }
+        public string TimeZone { get; set; }
     
         public virtual Country Country { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

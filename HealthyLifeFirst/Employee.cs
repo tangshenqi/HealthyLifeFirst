@@ -17,6 +17,7 @@ namespace HealthyLifeFirst
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Employee()
         {
+            this.Case = new HashSet<Case>();
             this.Leave = new HashSet<Leave>();
         }
     
@@ -41,6 +42,8 @@ namespace HealthyLifeFirst
         public double AllocatedChildcareLeave { get; set; }
         public string Superior { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Case> Case { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Leave> Leave { get; set; }
     }

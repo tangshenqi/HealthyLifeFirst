@@ -16,6 +16,7 @@ namespace HealthyLifeFirst
     {
         public string AppointmentID { get; set; }
         public System.DateTime BookingDateAndTime { get; set; }
+        public string CustomerID { get; set; }
         public System.DateTime AppointmentDate { get; set; }
         public string AppointmentTime { get; set; }
         public string Remarks { get; set; }

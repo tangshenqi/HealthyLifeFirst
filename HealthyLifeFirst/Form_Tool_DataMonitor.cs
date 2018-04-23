@@ -34,7 +34,7 @@ namespace HealthyLifeFirst
             switch (cbx_TableSelector.Text)
             {
                 case "Appointment" : dgv_DisplayRecord.DataSource = ctx.Appointment.ToList(); dgv_DisplayRecord.Columns["Customer"].Visible = false; break;
-                case "Case" : dgv_DisplayRecord.DataSource = ctx.Case.ToList(); dgv_DisplayRecord.Columns["Customer"].Visible = false; break;
+                case "Case" : dgv_DisplayRecord.DataSource = ctx.Case.ToList(); dgv_DisplayRecord.Columns["Customer"].Visible = false; dgv_DisplayRecord.Columns["Employee"].Visible = false; break;
                 case "Customer": dgv_DisplayRecord.DataSource = ctx.Customer.ToList(); dgv_DisplayRecord.Columns["Appointment"].Visible = false; dgv_DisplayRecord.Columns["Case"].Visible = false; break;
                 case "Employee": dgv_DisplayRecord.DataSource = ctx.Employee.ToList(); dgv_DisplayRecord.Columns["Leave"].Visible = false; break;
                 case "Inventory": dgv_DisplayRecord.DataSource = ctx.Inventory.ToList(); dgv_DisplayRecord.Columns["Item"].Visible = false; break;

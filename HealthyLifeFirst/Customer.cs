@@ -22,7 +22,7 @@ namespace HealthyLifeFirst
         }
     
         public string CustomerID { get; set; }
-        public string IdentitficationNumber { get; set; }
+        public string IdentificationNumber { get; set; }
         public string Title { get; set; }
         public string Name { get; set; }
         public string PhoneNumber { get; set; }

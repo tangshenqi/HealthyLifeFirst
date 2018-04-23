@@ -15,12 +15,14 @@ namespace HealthyLifeFirst
     public partial class Order
     {
         public string OrderID { get; set; }
+        public string ItemID { get; set; }
         public double QuantityOrdered { get; set; }
         public string UnitOfMeasure { get; set; }
         public double OrderPrice { get; set; }
         public System.DateTime DateOrdered { get; set; }
         public System.DateTime DateExpected { get; set; }
         public System.DateTime DateReceived { get; set; }
+        public string SupplierID { get; set; }
     
         public virtual Item Item { get; set; }
         public virtual Supplier Supplier { get; set; }

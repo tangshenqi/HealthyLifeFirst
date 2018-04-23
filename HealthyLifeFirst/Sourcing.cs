@@ -16,6 +16,8 @@ namespace HealthyLifeFirst
     {
         public string SourceID { get; set; }
         public System.DateTime DateSourced { get; set; }
+        public string ItemID { get; set; }
+        public string SupplierID { get; set; }
         public double CostPrice { get; set; }
         public System.DateTime DateValidUntil { get; set; }
         public double MinOrderQuantity { get; set; }

@@ -27,6 +27,7 @@ namespace HealthyLifeFirst
         public string ItemSubCategory { get; set; }
         public string ItemBrand { get; set; }
         public string ItemDescription { get; set; }
+        public string SupplierID { get; set; }
         public string ActiveIngredient { get; set; }
         public string StorageBelowTemp { get; set; }
         public string IsSunlightSensitive { get; set; }

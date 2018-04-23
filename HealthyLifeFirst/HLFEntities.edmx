@@ -21,6 +21,7 @@
             <PropertyRef Name="CaseID" />
           </Key>
           <Property Name="CaseID" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="EmployeeID" Type="varchar" MaxLength="4" Nullable="false" />
           <Property Name="CustomerID" Type="varchar" MaxLength="7" Nullable="false" />
           <Property Name="ConsultationDate" Type="date" Nullable="false" />
           <Property Name="Observations" Type="varchar(max)" Nullable="false" />
@@ -50,7 +51,7 @@
             <PropertyRef Name="CustomerID" />
           </Key>
           <Property Name="CustomerID" Type="varchar" MaxLength="7" Nullable="false" />
-          <Property Name="IdentitficationNumber" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="IdentificationNumber" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="Title" Type="varchar" MaxLength="3" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="PhoneNumber" Type="varchar" MaxLength="10" Nullable="false" />
@@ -232,6 +233,18 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Case_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Case" Type="Self.Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Case">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Inventory_Item">
           <End Role="Item" Type="Self.Item" Multiplicity="1" />
           <End Role="Inventory" Type="Self.Inventory" Multiplicity="0..1" />
@@ -392,6 +405,10 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Case" EntitySet="Case" />
           </AssociationSet>
+          <AssociationSet Name="FK_Case_Employee" Association="Self.FK_Case_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Case" EntitySet="Case" />
+          </AssociationSet>
           <AssociationSet Name="FK_Inventory_Item" Association="Self.FK_Inventory_Item">
             <End Role="Item" EntitySet="Item" />
             <End Role="Inventory" EntitySet="Inventory" />
@@ -436,6 +453,7 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
           </Key>
           <Property Name="AppointmentID" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="BookingDateAndTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CustomerID" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="AppointmentDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="AppointmentTime" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
@@ -446,6 +464,8 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
             <PropertyRef Name="CaseID" />
           </Key>
           <Property Name="CaseID" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmployeeID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CustomerID" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ConsultationDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Observations" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Investigations" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
@@ -454,6 +474,7 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
           <Property Name="HasMC" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NumberOfDaysOfMC" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Case_Customer" FromRole="Case" ToRole="Customer" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Case_Employee" FromRole="Case" ToRole="Employee" />
         </EntityType>
         <EntityType Name="ConsultationFee">
           <Key>
@@ -476,7 +497,7 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
             <PropertyRef Name="CustomerID" />
           </Key>
           <Property Name="CustomerID" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IdentitficationNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdentificationNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
@@ -507,6 +528,7 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
           <Property Name="AllocatedCompassionateLeave" Type="Double" Nullable="false" />
           <Property Name="AllocatedChildcareLeave" Type="Double" Nullable="false" />
           <Property Name="Superior" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Case" Relationship="Self.FK_Case_Employee" FromRole="Employee" ToRole="Case" />
           <NavigationProperty Name="Leave" Relationship="Self.FK_Leave_Employee" FromRole="Employee" ToRole="Leave" />
         </EntityType>
         <EntityType Name="Inventory">
@@ -530,6 +552,7 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
           <Property Name="ItemSubCategory" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ItemBrand" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ItemDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SupplierID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ActiveIngredient" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="StorageBelowTemp" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IsSunlightSensitive" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
@@ -549,6 +572,7 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
             <PropertyRef Name="LeaveID" />
           </Key>
           <Property Name="LeaveID" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmployeeID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LeaveType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NumberOfDays" Type="Double" Nullable="false" />
           <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="0" />
@@ -561,12 +585,14 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
             <PropertyRef Name="OrderID" />
           </Key>
           <Property Name="OrderID" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ItemID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="QuantityOrdered" Type="Double" Nullable="false" />
           <Property Name="UnitOfMeasure" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="OrderPrice" Type="Double" Nullable="false" />
           <Property Name="DateOrdered" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DateExpected" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DateReceived" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SupplierID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Item" Relationship="Self.FK_Order_Item" FromRole="Order" ToRole="Item" />
           <NavigationProperty Name="Supplier" Relationship="Self.FK_Order_Supplier" FromRole="Order" ToRole="Supplier" />
         </EntityType>
@@ -592,6 +618,8 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
           </Key>
           <Property Name="SourceID" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DateSourced" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ItemID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SupplierID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CostPrice" Type="Double" Nullable="false" />
           <Property Name="DateValidUntil" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="MinOrderQuantity" Type="Double" Nullable="false" />
@@ -613,6 +641,7 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
           <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PhoneExt" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TimeZone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Country" Relationship="Self.FK_Supplier_Country" FromRole="Supplier" ToRole="Country" />
           <NavigationProperty Name="Item" Relationship="Self.FK_Item_Supplier" FromRole="Supplier" ToRole="Item" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Order_Supplier" FromRole="Supplier" ToRole="Order" />
@@ -645,18 +674,62 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
         <Association Name="FK_Appointment_Customer">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
           <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Case_Customer">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
           <End Role="Case" Type="Self.Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Case">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Case_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Case" Type="Self.Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Case">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Supplier_Country">
           <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
           <End Role="Supplier" Type="Self.Supplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="TimeZone" />
+            </Principal>
+            <Dependent Role="Supplier">
+              <PropertyRef Name="TimeZone" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Leave_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="Leave" Type="Self.Leave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Leave">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Inventory_Item">
           <End Role="Item" Type="Self.Item" Multiplicity="1" />
@@ -673,22 +746,62 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
         <Association Name="FK_Item_Supplier">
           <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
           <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_Item">
           <End Role="Item" Type="Self.Item" Multiplicity="1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Sourcing_Item">
           <End Role="Item" Type="Self.Item" Multiplicity="1" />
           <End Role="Sourcing" Type="Self.Sourcing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="Sourcing">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_Supplier">
           <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Sourcing_Supplier">
           <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
           <End Role="Sourcing" Type="Self.Sourcing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="Sourcing">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <EntityContainer Name="HealthyLifeFirstEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Appointment" EntityType="Self.Appointment" />
@@ -713,6 +826,10 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
           </AssociationSet>
           <AssociationSet Name="FK_Case_Customer" Association="Self.FK_Case_Customer">
             <End Role="Customer" EntitySet="Customer" />
+            <End Role="Case" EntitySet="Case" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Case_Employee" Association="Self.FK_Case_Employee">
+            <End Role="Employee" EntitySet="Employee" />
             <End Role="Case" EntitySet="Case" />
           </AssociationSet>
           <AssociationSet Name="FK_Supplier_Country" Association="Self.FK_Supplier_Country">
@@ -800,6 +917,7 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
               <MappingFragment StoreEntitySet="Appointment">
                 <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
                 <ScalarProperty Name="BookingDateAndTime" ColumnName="BookingDateAndTime" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
                 <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
@@ -810,6 +928,8 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
             <EntityTypeMapping TypeName="HealthyLifeFirstModel.Case">
               <MappingFragment StoreEntitySet="Case">
                 <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="ConsultationDate" ColumnName="ConsultationDate" />
                 <ScalarProperty Name="Observations" ColumnName="Observations" />
                 <ScalarProperty Name="Investigations" ColumnName="Investigations" />
@@ -841,7 +961,7 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
             <EntityTypeMapping TypeName="HealthyLifeFirstModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="IdentitficationNumber" ColumnName="IdentitficationNumber" />
+                <ScalarProperty Name="IdentificationNumber" ColumnName="IdentificationNumber" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
@@ -894,6 +1014,7 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
                 <ScalarProperty Name="ItemSubCategory" ColumnName="ItemSubCategory" />
                 <ScalarProperty Name="ItemBrand" ColumnName="ItemBrand" />
                 <ScalarProperty Name="ItemDescription" ColumnName="ItemDescription" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
                 <ScalarProperty Name="ActiveIngredient" ColumnName="ActiveIngredient" />
                 <ScalarProperty Name="StorageBelowTemp" ColumnName="StorageBelowTemp" />
                 <ScalarProperty Name="IsSunlightSensitive" ColumnName="IsSunlightSensitive" />
@@ -910,6 +1031,7 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
             <EntityTypeMapping TypeName="HealthyLifeFirstModel.Leave">
               <MappingFragment StoreEntitySet="Leave">
                 <ScalarProperty Name="LeaveID" ColumnName="LeaveID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="LeaveType" ColumnName="LeaveType" />
                 <ScalarProperty Name="NumberOfDays" ColumnName="NumberOfDays" />
                 <ScalarProperty Name="DateStart" ColumnName="DateStart" />
@@ -922,12 +1044,14 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
             <EntityTypeMapping TypeName="HealthyLifeFirstModel.Order">
               <MappingFragment StoreEntitySet="Order">
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
                 <ScalarProperty Name="QuantityOrdered" ColumnName="QuantityOrdered" />
                 <ScalarProperty Name="UnitOfMeasure" ColumnName="UnitOfMeasure" />
                 <ScalarProperty Name="OrderPrice" ColumnName="OrderPrice" />
                 <ScalarProperty Name="DateOrdered" ColumnName="DateOrdered" />
                 <ScalarProperty Name="DateExpected" ColumnName="DateExpected" />
                 <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -954,6 +1078,8 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
               <MappingFragment StoreEntitySet="Sourcing">
                 <ScalarProperty Name="SourceID" ColumnName="SourceID" />
                 <ScalarProperty Name="DateSourced" ColumnName="DateSourced" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
                 <ScalarProperty Name="CostPrice" ColumnName="CostPrice" />
                 <ScalarProperty Name="DateValidUntil" ColumnName="DateValidUntil" />
                 <ScalarProperty Name="MinOrderQuantity" ColumnName="MinOrderQuantity" />
@@ -974,6 +1100,7 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="PhoneExt" ColumnName="PhoneExt" />
                 <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -999,79 +1126,6 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="FK_Appointment_Customer" TypeName="HealthyLifeFirstModel.FK_Appointment_Customer" StoreEntitySet="Appointment">
-            <EndProperty Name="Customer">
-              <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-            </EndProperty>
-            <EndProperty Name="Appointment">
-              <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Case_Customer" TypeName="HealthyLifeFirstModel.FK_Case_Customer" StoreEntitySet="Case">
-            <EndProperty Name="Customer">
-              <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-            </EndProperty>
-            <EndProperty Name="Case">
-              <ScalarProperty Name="CaseID" ColumnName="CaseID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Supplier_Country" TypeName="HealthyLifeFirstModel.FK_Supplier_Country" StoreEntitySet="Supplier">
-            <EndProperty Name="Country">
-              <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
-            </EndProperty>
-            <EndProperty Name="Supplier">
-              <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
-            </EndProperty>
-            <Condition IsNull="false" ColumnName="TimeZone" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Leave_Employee" TypeName="HealthyLifeFirstModel.FK_Leave_Employee" StoreEntitySet="Leave">
-            <EndProperty Name="Employee">
-              <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-            </EndProperty>
-            <EndProperty Name="Leave">
-              <ScalarProperty Name="LeaveID" ColumnName="LeaveID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Item_Supplier" TypeName="HealthyLifeFirstModel.FK_Item_Supplier" StoreEntitySet="Item">
-            <EndProperty Name="Supplier">
-              <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
-            </EndProperty>
-            <EndProperty Name="Item">
-              <ScalarProperty Name="ItemID" ColumnName="ItemID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Order_Item" TypeName="HealthyLifeFirstModel.FK_Order_Item" StoreEntitySet="Order">
-            <EndProperty Name="Item">
-              <ScalarProperty Name="ItemID" ColumnName="ItemID" />
-            </EndProperty>
-            <EndProperty Name="Order">
-              <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Sourcing_Item" TypeName="HealthyLifeFirstModel.FK_Sourcing_Item" StoreEntitySet="Sourcing">
-            <EndProperty Name="Item">
-              <ScalarProperty Name="ItemID" ColumnName="ItemID" />
-            </EndProperty>
-            <EndProperty Name="Sourcing">
-              <ScalarProperty Name="SourceID" ColumnName="SourceID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Order_Supplier" TypeName="HealthyLifeFirstModel.FK_Order_Supplier" StoreEntitySet="Order">
-            <EndProperty Name="Supplier">
-              <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
-            </EndProperty>
-            <EndProperty Name="Order">
-              <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Sourcing_Supplier" TypeName="HealthyLifeFirstModel.FK_Sourcing_Supplier" StoreEntitySet="Sourcing">
-            <EndProperty Name="Supplier">
-              <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
-            </EndProperty>
-            <EndProperty Name="Sourcing">
-              <ScalarProperty Name="SourceID" ColumnName="SourceID" />
-            </EndProperty>
-          </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="HealthyLifeFirstModel.Store.sp_alterdiagram" />
           <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="HealthyLifeFirstModel.Store.sp_creatediagram" />
           <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="HealthyLifeFirstModel.Store.sp_dropdiagram" />
@@ -1111,7 +1165,7 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

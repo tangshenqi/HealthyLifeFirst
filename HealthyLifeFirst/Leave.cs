@@ -15,6 +15,7 @@ namespace HealthyLifeFirst
     public partial class Leave
     {
         public string LeaveID { get; set; }
+        public string EmployeeID { get; set; }
         public string LeaveType { get; set; }
         public double NumberOfDays { get; set; }
         public System.DateTime DateStart { get; set; }
