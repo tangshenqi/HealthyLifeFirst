@@ -15,10 +15,10 @@ namespace HealthyLifeFirst
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class HealthyLifeFirstEntities : DbContext
+    public partial class HLFEntities : DbContext
     {
-        public HealthyLifeFirstEntities()
-            : base("name=HealthyLifeFirstEntities")
+        public HLFEntities()
+            : base("name=HLFEntities")
         {
         }
     

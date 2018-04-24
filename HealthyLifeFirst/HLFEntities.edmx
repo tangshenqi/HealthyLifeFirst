@@ -803,7 +803,7 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="HealthyLifeFirstEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="HLFEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Appointment" EntityType="Self.Appointment" />
           <EntitySet Name="Case" EntityType="Self.Case" />
           <EntitySet Name="ConsultationFee" EntityType="Self.ConsultationFee" />
@@ -911,7 +911,7 @@ warning 6002: The table/view 'HealthyLifeFirst.dbo.PrescriptionSet' does not hav
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="HealthyLifeFirstModelStoreContainer" CdmEntityContainer="HealthyLifeFirstEntities">
+        <EntityContainerMapping StorageEntityContainer="HealthyLifeFirstModelStoreContainer" CdmEntityContainer="HLFEntities">
           <EntitySetMapping Name="Appointment">
             <EntityTypeMapping TypeName="HealthyLifeFirstModel.Appointment">
               <MappingFragment StoreEntitySet="Appointment">

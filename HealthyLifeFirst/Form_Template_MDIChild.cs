@@ -21,7 +21,7 @@ namespace HealthyLifeFirst
         protected void PaintBorderlessGroupBox(object sender, PaintEventArgs p)
         {
             GroupBox box = (GroupBox)sender;
-            p.Graphics.Clear(SystemColors.Control);
+            p.Graphics.Clear(Color.LightSteelBlue);
             p.Graphics.DrawString(box.Text, box.Font, Brushes.Black, 0, 0);
 
             // Example Implementation
@@ -37,6 +37,11 @@ namespace HealthyLifeFirst
         {
             var children = (control.Controls != null) ? control.Controls.OfType<TControl>() : Enumerable.Empty<TControl>();
             return children.SelectMany(c => GetChildControls<TControl>(c)).Concat(children);
+
+            // Example Implementation
+            // var txt_Coll = this.GetChildControls<TextBox>();
+            // foreach (TextBox txt in txt_Coll)
+            //     txt.Text = "";
         }
     }
     #endregion

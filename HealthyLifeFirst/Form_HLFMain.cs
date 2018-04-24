@@ -15,6 +15,7 @@ namespace HealthyLifeFirst
         public Form_HLFMain()
         {
             InitializeComponent();
+            StatusUpdate("Please select an option from the menu to begin.");
         }
 
         public void StatusUpdate(string m)
@@ -25,6 +26,13 @@ namespace HealthyLifeFirst
         private void launchDataMonitorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form_Tool_DataMonitor frm = new Form_Tool_DataMonitor();
+            frm.Show();
+        }
+
+        private void manageItemsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form_ItemManagement frm = new Form_ItemManagement(this);
+            frm.MdiParent = this;
             frm.Show();
         }
     }

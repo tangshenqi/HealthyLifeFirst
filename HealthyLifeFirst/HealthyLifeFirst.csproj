@@ -63,6 +63,7 @@
     <Compile Include="ConsultationFee.cs">
       <DependentUpon>HLFEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Class_Item.cs" />
     <Compile Include="Country.cs">
       <DependentUpon>HLFEntities.tt</DependentUpon>
     </Compile>
@@ -77,6 +78,12 @@
     </Compile>
     <Compile Include="Form_HLFMain.Designer.cs">
       <DependentUpon>Form_HLFMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_ItemManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ItemManagement.Designer.cs">
+      <DependentUpon>Form_ItemManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="Form_Template_MDIChild.cs">
       <SubType>Form</SubType>
@@ -105,6 +112,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HLFEntities.edmx</DependentUpon>
     </Compile>
+    <Compile Include="HLFException.cs" />
     <Compile Include="Inventory.cs">
       <DependentUpon>HLFEntities.tt</DependentUpon>
     </Compile>
@@ -145,6 +153,9 @@
     </Compile>
     <EmbeddedResource Include="Form_HLFMain.resx">
       <DependentUpon>Form_HLFMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ItemManagement.resx">
+      <DependentUpon>Form_ItemManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Template_MDIChild.resx">
       <DependentUpon>Form_Template_MDIChild.cs</DependentUpon>

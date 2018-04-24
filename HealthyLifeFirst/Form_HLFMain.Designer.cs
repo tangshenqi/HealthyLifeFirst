@@ -31,10 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_HLFMain));
             this.menu_Main = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.status_Main = new System.Windows.Forms.StatusStrip();
-            this.lbl_Status_Main = new System.Windows.Forms.ToolStripStatusLabel();
+            this.manageItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.launchDataMonitorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.status_Main = new System.Windows.Forms.StatusStrip();
+            this.lbl_Status_Main = new System.Windows.Forms.ToolStripStatusLabel();
             this.menu_Main.SuspendLayout();
             this.status_Main.SuspendLayout();
             this.SuspendLayout();
@@ -53,9 +54,33 @@
             // 
             // fileToolStripMenuItem
             // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.manageItemsToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(73, 21);
             this.fileToolStripMenuItem.Text = "Operations";
+            // 
+            // manageItemsToolStripMenuItem
+            // 
+            this.manageItemsToolStripMenuItem.Name = "manageItemsToolStripMenuItem";
+            this.manageItemsToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.manageItemsToolStripMenuItem.Text = "Manage Items";
+            this.manageItemsToolStripMenuItem.Click += new System.EventHandler(this.manageItemsToolStripMenuItem_Click);
+            // 
+            // debugToolStripMenuItem
+            // 
+            this.debugToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.launchDataMonitorToolStripMenuItem});
+            this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
+            this.debugToolStripMenuItem.Size = new System.Drawing.Size(52, 21);
+            this.debugToolStripMenuItem.Text = "Debug";
+            // 
+            // launchDataMonitorToolStripMenuItem
+            // 
+            this.launchDataMonitorToolStripMenuItem.Name = "launchDataMonitorToolStripMenuItem";
+            this.launchDataMonitorToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.launchDataMonitorToolStripMenuItem.Text = "Launch DataMonitor";
+            this.launchDataMonitorToolStripMenuItem.Click += new System.EventHandler(this.launchDataMonitorToolStripMenuItem_Click);
             // 
             // status_Main
             // 
@@ -74,21 +99,6 @@
             this.lbl_Status_Main.Name = "lbl_Status_Main";
             this.lbl_Status_Main.Size = new System.Drawing.Size(41, 17);
             this.lbl_Status_Main.Text = "Status:";
-            // 
-            // debugToolStripMenuItem
-            // 
-            this.debugToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.launchDataMonitorToolStripMenuItem});
-            this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
-            this.debugToolStripMenuItem.Size = new System.Drawing.Size(52, 21);
-            this.debugToolStripMenuItem.Text = "Debug";
-            // 
-            // launchDataMonitorToolStripMenuItem
-            // 
-            this.launchDataMonitorToolStripMenuItem.Name = "launchDataMonitorToolStripMenuItem";
-            this.launchDataMonitorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.launchDataMonitorToolStripMenuItem.Text = "Launch DataMonitor";
-            this.launchDataMonitorToolStripMenuItem.Click += new System.EventHandler(this.launchDataMonitorToolStripMenuItem_Click);
             // 
             // Form_HLFMain
             // 
@@ -125,6 +135,7 @@
         private System.Windows.Forms.ToolStripStatusLabel lbl_Status_Main;
         private System.Windows.Forms.ToolStripMenuItem debugToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem launchDataMonitorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageItemsToolStripMenuItem;
     }
 }
 
